@@ -401,10 +401,7 @@ impl Message {
     /// The `ResponseCode`, if this is an EDNS message then this will join the section from the OPT
     ///  record to create the EDNS `ResponseCode`
     pub fn response_code(&self) -> ResponseCode {
-        ResponseCode::from(
-            self.edns.as_ref().map_or(0, Edns::rcode_high),
-            self.header.response_code(),
-        )
+        self.header.response_code()
     }
 
     /// ```text
