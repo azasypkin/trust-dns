@@ -55,7 +55,7 @@ impl Label {
         }
 
         match idna::Config::default()
-            .use_std3_ascii_rules(true)
+            .use_std3_ascii_rules(false)
             .transitional_processing(true)
             .verify_dns_length(true)
             .to_ascii(s)
@@ -73,7 +73,9 @@ impl Label {
             return Ok(Label::wildcard());
         }
 
-        if !s.is_empty()
+        Label::from_raw_bytes(s.as_bytes())
+
+        /*if !s.is_empty()
             && s.is_ascii()
             && s.chars().take(1).all(|c| is_safe_ascii(c, true, false))
             && s.chars().skip(1).all(|c| is_safe_ascii(c, false, false))
@@ -81,7 +83,7 @@ impl Label {
             Label::from_raw_bytes(s.as_bytes())
         } else {
             Err(format!("Malformed label: {}", s).into())
-        }
+        }*/
     }
 
     /// Returns a new Label of the Wildcard, i.e. "*"

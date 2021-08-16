@@ -21,6 +21,9 @@ this.has.dots   A       127.0.0.3
 alias           CNAME   www
 alias-chain     CNAME   alias
 
+trigger         CNAME   www.elastic.co\000.trap
+www.elastic.co\000.trap     A       127.0.0.4
+
 aname-chain     ANAME   alias
 
 ; _Service._Proto.Name TTL Class SRV Priority Weight Port Target
