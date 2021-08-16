@@ -60,6 +60,7 @@ fn send_response<R: ResponseHandler>(
         resp_edns.options_mut().insert(dau);
         resp_edns.options_mut().insert(dhu);
 
+        resp_edns.set_rcode_high(response.header().response_code().high());
         response.set_edns(resp_edns);
     }
 
